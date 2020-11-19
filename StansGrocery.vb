@@ -34,19 +34,18 @@ Public Class StansGroceryForm
             Me.food$(i, 2) = thirdArray(0)
         Next
 
-        Console.WriteLine(My.Resources.Grocery)
-
     End Sub
 
     Sub loadComboBox()
         If CategoryButton.Checked = True Then
             filter = 2
-        Else
+        ElseIf AisleButton.Checked = True Then
             filter = 1
         End If
 
         Try
 
+            DisplayComboBox.Items.Clear()
             For i = LBound(food) To UBound(food) - 1
                 If food(i, filter) <> "" And food$(i, filter) <> "  " And Not DisplayComboBox.Items.Contains(food(i, filter)) Then
                     DisplayComboBox.Items.Add(food(i, filter))
@@ -58,6 +57,8 @@ Public Class StansGroceryForm
         Catch ex As Exception
 
         End Try
+
+
     End Sub
 
     Sub LoadListBox()
@@ -71,8 +72,10 @@ Public Class StansGroceryForm
 
         Next
     End Sub
+
     Private Sub StansGrocery_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadDataArray()
+        LoadListBox()
         CategoryButton.Checked = True
     End Sub
 
@@ -81,57 +84,68 @@ Public Class StansGroceryForm
     End Sub
 
     Private Sub SearchButton_Click(sender As Object, e As EventArgs) Handles SearchButton.Click, SearchToolStripMenuItem.Click
+        loadComboBox()
         DisplayListBox.Items.Clear()
-        DisplayComboBox.Items.Clear()
         Dim searchString As String = SearchBox.Text
 
         Try
             For i = LBound(Me.food$) To UBound(Me.food$) - 1
-                If InStr(Me.food$(i, 0), searchString, CompareMethod.Text) <> 0 Or InStr(Me.food$(i, 1), searchString, CompareMethod.Text) > 0 Or InStr(Me.food$(i, 2), searchString, CompareMethod.Text) > 0 Then
+                If InStr(Me.food$(i, 0), searchString, CompareMethod.Text) <> 0 Or InStr(Me.food$(i, 2), searchString, CompareMethod.Text) > 0 Then
                     DisplayListBox.Items.Add(Me.food$(i, 0))
-                    DisplayComboBox.Items.Add(Me.food$(i, 2))
                 End If
 
             Next
         Catch ex As Exception
         End Try
 
-        DisplayComboBox.Items.Remove("  ")
-
     End Sub
 
     Private Sub CategoryButton_CheckedChanged(sender As Object, e As EventArgs) Handles CategoryButton.CheckedChanged
-        DisplayComboBox.Items.Clear()
-        For i = LBound(food) To UBound(food) - 1
-            If food(i, 2) <> "" And DisplayComboBox.Items.Contains(food(i, 2)) = False Then
-                DisplayComboBox.Items.Add(food(i, 2))
-            End If
-            DisplayComboBox.Sorted = True
-        Next
-        ComboLabel.Text = "Category"
+        If CategoryButton.Checked = True Then
+            'loadComboBox()
+            DisplayComboBox.Items.Clear()
+            For i = LBound(food) To UBound(food) - 1
+                If food(i, 2) <> "" And DisplayComboBox.Items.Contains(food(i, 2)) = False Then
+                    DisplayComboBox.Items.Add(food(i, 2))
+                End If
+                DisplayComboBox.Sorted = True
+            Next
+            ComboLabel.Text = "Category"
+            DisplayComboBox.Items.Insert(0, " ~Show All~")
+        Else
 
-        DisplayComboBox.Items.Insert(0, " ~Show All~")
+        End If
+
 
     End Sub
 
     Private Sub AisleButton_CheckedChanged(sender As Object, e As EventArgs) Handles AisleButton.CheckedChanged
-        DisplayComboBox.Items.Clear()
+        If AisleButton.Checked = True Then
 
-        For i = LBound(Me.food$) To UBound(Me.food$) - 1
-            If food(i, 1) <> "  " And DisplayComboBox.Items.Contains(food(i, 1)) = False Then
-                DisplayComboBox.Items.Add(food(i, 1))
-            End If
-            DisplayComboBox.Sorted = True
-        Next
-        ComboLabel.Text = "Aisle"
+            DisplayComboBox.Items.Clear()
 
-        DisplayComboBox.Items.Insert(0, " ~Show All~")
+            For i = LBound(Me.food$) To UBound(Me.food$) - 1
+                If food(i, 1) <> "  " And DisplayComboBox.Items.Contains(food(i, 1)) = False Then
+                    DisplayComboBox.Items.Add(food(i, 1))
+                End If
+                DisplayComboBox.Sorted = True
+            Next
+            ComboLabel.Text = "Aisle"
+            DisplayComboBox.Items.Insert(0, " ~Show All~")
+        Else
+
+        End If
     End Sub
 
     Private Sub SearchBox_TextChanged(sender As Object, e As EventArgs) Handles SearchBox.TextChanged
 
-        If SearchBox.Text = "zzz" Then
+        If SearchBox.TextLength < 2 Then
+            DisplayLabel.Text = "Please be more specific."
+            Exit Sub
+        ElseIf SearchBox.Text = "zzz" Then
             Me.Close()
+        Else
+
         End If
 
     End Sub
@@ -146,7 +160,7 @@ Public Class StansGroceryForm
         For a = 0 To 255
             For b = 0 To 2
                 If DisplayListBox.SelectedItem.ToString = food(a, b) Then
-                    DisplayLabel.Text = "You can find " & food(a, b) & " on Aisle " &
+                    DisplayLabel.Text = "You will find " & food(a, b) & " on Aisle " &
                         food(a, b + 1) & " With the " & food(a, b + 2)
                 End If
 
@@ -155,24 +169,16 @@ Public Class StansGroceryForm
     End Sub
 
     Private Sub DisplayComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DisplayComboBox.SelectedIndexChanged
+        'DisplayLabel.Text = "Stuff"
         For a = 0 To 255
             For b = 0 To 2
-                If DisplayListBox.SelectedItem.ToString = food(a, b) Then
-                    DisplayLabel.Text = "You can find " & food(a, b) & " on Aisle " &
-                        food(a, b + 1) & " With the " & food(a, b + 2)
+                If DisplayComboBox.SelectedIndex.ToString = food(a, b) Then
+                    DisplayListBox.Items.Add(food(a, b))
                 End If
 
             Next
         Next
 
-        For a = 0 To 255
-            For b = 0 To 2
-                If DisplayListBox.SelectedItem.ToString = food(a, b) Then
-                    DisplayListBox.Text = "You can find " & food(a, b) & " on Aisle " &
-                        food(a, b + 1) & " With the " & food(a, b + 2)
-                End If
-
-            Next
-        Next
+        'DisplayListBox.Items.Clear()
     End Sub
 End Class
