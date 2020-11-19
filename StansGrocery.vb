@@ -34,38 +34,31 @@ Public Class StansGroceryForm
             Me.food$(i, 2) = thirdArray(0)
         Next
 
-        'Console.WriteLine(My.Resources.Grocery)
+        Console.WriteLine(My.Resources.Grocery)
 
     End Sub
 
-    'Sub LoadDisplayListbox()
-    '    DisplayListBox.Items.Clear()
+    Sub loadComboBox()
+        If CategoryButton.Checked = True Then
+            filter = 2
+        Else
+            filter = 1
+        End If
 
-    '    For i = LBound(food) To UBound(food) - 1
-    '        If (food$(i, 0) <> "" And food$(i, Me.filter) = DisplayComboBox.SelectedItem.ToString) Or
-    '           (food$(i, 0) <> "" And DisplayComboBox.SelectedIndex = 0) Then
-    '            DisplayListBox.Items.Add(food(i, 0))
-    '        End If
-    '    Next
+        Try
 
-    '    DisplayListBox.Sorted = True
-    '    DisplayComboBox.Items.Remove("  ")
-    'End Sub
+            For i = LBound(food) To UBound(food) - 1
+                If food(i, filter) <> "" And food$(i, filter) <> "  " And Not DisplayComboBox.Items.Contains(food(i, filter)) Then
+                    DisplayComboBox.Items.Add(food(i, filter))
 
+                End If
 
+            Next
 
-    Function Search() As Integer
-        ' Dim searchString As String = "Apples"
+        Catch ex As Exception
 
-        'For i = LBound(Me.food$) To UBound(Me.food$)
-        '    If Me.food$(i, 0) = searchString Then
-        '    End If
-        'Next
-
-        'Return -1
-
-
-    End Function
+        End Try
+    End Sub
 
     Sub LoadListBox()
 
@@ -90,27 +83,20 @@ Public Class StansGroceryForm
     Private Sub SearchButton_Click(sender As Object, e As EventArgs) Handles SearchButton.Click, SearchToolStripMenuItem.Click
         DisplayListBox.Items.Clear()
         DisplayComboBox.Items.Clear()
-
         Dim searchString As String = SearchBox.Text
-        'DisplayLabel.Text = "Item not found"
-
 
         Try
             For i = LBound(Me.food$) To UBound(Me.food$) - 1
-                If InStr(Me.food$(i, 0), searchString) > 0 Or InStr(Me.food$(i, 1), searchString) > 0 Or InStr(Me.food$(i, 2), searchString) > 0 And DisplayComboBox.Items.Contains(food(i, 2)) = False Then
+                If InStr(Me.food$(i, 0), searchString, CompareMethod.Text) <> 0 Or InStr(Me.food$(i, 1), searchString, CompareMethod.Text) > 0 Or InStr(Me.food$(i, 2), searchString, CompareMethod.Text) > 0 Then
                     DisplayListBox.Items.Add(Me.food$(i, 0))
                     DisplayComboBox.Items.Add(Me.food$(i, 2))
                 End If
-                'DisplayListBox.SelectedIndex = 0
+
             Next
         Catch ex As Exception
-
         End Try
 
-        'DisplayLabel.Text = CStr(Search())
-        'DisplayLabel.Text = $"{food$(Search(), 0)}{food$(Search(), 1)}{food$(Search(), 2)}"
-        'DisplayListBox.Items.Add(food(20, 0))
-
+        DisplayComboBox.Items.Remove("  ")
 
     End Sub
 
@@ -130,6 +116,7 @@ Public Class StansGroceryForm
 
     Private Sub AisleButton_CheckedChanged(sender As Object, e As EventArgs) Handles AisleButton.CheckedChanged
         DisplayComboBox.Items.Clear()
+
         For i = LBound(Me.food$) To UBound(Me.food$) - 1
             If food(i, 1) <> "  " And DisplayComboBox.Items.Contains(food(i, 1)) = False Then
                 DisplayComboBox.Items.Add(food(i, 1))
@@ -154,4 +141,38 @@ Public Class StansGroceryForm
         Me.Hide()
     End Sub
 
+    Private Sub DisplayListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DisplayListBox.SelectedIndexChanged
+
+        For a = 0 To 255
+            For b = 0 To 2
+                If DisplayListBox.SelectedItem.ToString = food(a, b) Then
+                    DisplayLabel.Text = "You can find " & food(a, b) & " on Aisle " &
+                        food(a, b + 1) & " With the " & food(a, b + 2)
+                End If
+
+            Next
+        Next
+    End Sub
+
+    Private Sub DisplayComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DisplayComboBox.SelectedIndexChanged
+        For a = 0 To 255
+            For b = 0 To 2
+                If DisplayListBox.SelectedItem.ToString = food(a, b) Then
+                    DisplayLabel.Text = "You can find " & food(a, b) & " on Aisle " &
+                        food(a, b + 1) & " With the " & food(a, b + 2)
+                End If
+
+            Next
+        Next
+
+        For a = 0 To 255
+            For b = 0 To 2
+                If DisplayListBox.SelectedItem.ToString = food(a, b) Then
+                    DisplayListBox.Text = "You can find " & food(a, b) & " on Aisle " &
+                        food(a, b + 1) & " With the " & food(a, b + 2)
+                End If
+
+            Next
+        Next
+    End Sub
 End Class

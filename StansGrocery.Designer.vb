@@ -36,11 +36,11 @@ Partial Class StansGroceryForm
         Me.SearchBox = New System.Windows.Forms.TextBox()
         Me.CategoryButton = New System.Windows.Forms.RadioButton()
         Me.AisleButton = New System.Windows.Forms.RadioButton()
-        Me.CatAndAisleGroupBox = New System.Windows.Forms.GroupBox()
+        Me.DisplayGroupBox = New System.Windows.Forms.GroupBox()
         Me.DisplayLabel = New System.Windows.Forms.Label()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.MenuStrip1.SuspendLayout()
-        Me.CatAndAisleGroupBox.SuspendLayout()
+        Me.DisplayGroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
         'DisplayListBox
@@ -163,16 +163,16 @@ Partial Class StansGroceryForm
         Me.AisleButton.Text = "Aisle"
         Me.AisleButton.UseVisualStyleBackColor = True
         '
-        'CatAndAisleGroupBox
+        'DisplayGroupBox
         '
-        Me.CatAndAisleGroupBox.Controls.Add(Me.AisleButton)
-        Me.CatAndAisleGroupBox.Controls.Add(Me.CategoryButton)
-        Me.CatAndAisleGroupBox.Location = New System.Drawing.Point(12, 280)
-        Me.CatAndAisleGroupBox.Name = "CatAndAisleGroupBox"
-        Me.CatAndAisleGroupBox.Size = New System.Drawing.Size(139, 125)
-        Me.CatAndAisleGroupBox.TabIndex = 12
-        Me.CatAndAisleGroupBox.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.CatAndAisleGroupBox, "Select to sort by Category or Aisle")
+        Me.DisplayGroupBox.Controls.Add(Me.AisleButton)
+        Me.DisplayGroupBox.Controls.Add(Me.CategoryButton)
+        Me.DisplayGroupBox.Location = New System.Drawing.Point(12, 280)
+        Me.DisplayGroupBox.Name = "DisplayGroupBox"
+        Me.DisplayGroupBox.Size = New System.Drawing.Size(139, 125)
+        Me.DisplayGroupBox.TabIndex = 12
+        Me.DisplayGroupBox.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.DisplayGroupBox, "Select to sort by Category or Aisle")
         '
         'DisplayLabel
         '
@@ -188,7 +188,7 @@ Partial Class StansGroceryForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1372, 892)
         Me.Controls.Add(Me.DisplayLabel)
-        Me.Controls.Add(Me.CatAndAisleGroupBox)
+        Me.Controls.Add(Me.DisplayGroupBox)
         Me.Controls.Add(Me.SearchBox)
         Me.Controls.Add(Me.DisplayComboBox)
         Me.Controls.Add(Me.Label2)
@@ -202,8 +202,8 @@ Partial Class StansGroceryForm
         Me.Text = "Stans Grocery"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
-        Me.CatAndAisleGroupBox.ResumeLayout(False)
-        Me.CatAndAisleGroupBox.PerformLayout()
+        Me.DisplayGroupBox.ResumeLayout(False)
+        Me.DisplayGroupBox.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -220,7 +220,7 @@ Partial Class StansGroceryForm
     Friend WithEvents SearchBox As TextBox
     Friend WithEvents CategoryButton As RadioButton
     Friend WithEvents AisleButton As RadioButton
-    Friend WithEvents CatAndAisleGroupBox As GroupBox
+    Friend WithEvents DisplayGroupBox As GroupBox
     Friend WithEvents DisplayLabel As Label
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents SearchToolStripMenuItem As ToolStripMenuItem
