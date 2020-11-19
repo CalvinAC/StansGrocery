@@ -22,9 +22,28 @@ Partial Class AboutForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container
+        Me.AboutLabel = New System.Windows.Forms.Label()
+        Me.SuspendLayout()
+        '
+        'AboutLabel
+        '
+        Me.AboutLabel.Location = New System.Drawing.Point(37, 34)
+        Me.AboutLabel.Name = "AboutLabel"
+        Me.AboutLabel.Size = New System.Drawing.Size(401, 367)
+        Me.AboutLabel.TabIndex = 0
+        Me.AboutLabel.Text = "About"
+        '
+        'AboutForm
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Text = "AboutForm"
+        Me.Controls.Add(Me.AboutLabel)
+        Me.Name = "AboutForm"
+        Me.Text = "About"
+        Me.ResumeLayout(False)
+
     End Sub
+
+    Friend WithEvents AboutLabel As Label
 End Class

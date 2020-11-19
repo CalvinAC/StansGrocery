@@ -73,10 +73,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutForm.Designer.vb">
-      <DependentUpon>AboutForm.vb</DependentUpon>
+    <Compile Include="AbouForm.Designer.vb">
+      <DependentUpon>AbouForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="AboutForm.vb">
+    <Compile Include="AbouForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SplashScreen.Designer.vb">
@@ -110,6 +110,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AbouForm.resx">
+      <DependentUpon>AbouForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -140,6 +143,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Grocery.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GrocerySplashScreen.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Stans-Market-Front-Shot.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

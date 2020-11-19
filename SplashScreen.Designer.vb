@@ -33,13 +33,13 @@ Partial Class SplashScreenForm
         '
         'SplashScreenForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.StansGrocery.My.Resources.Resources.Shreek
+        Me.BackgroundImage = Global.StansGrocery.My.Resources.Resources.Stans_Market_Front_Shot
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(1050, 572)
+        Me.ClientSize = New System.Drawing.Size(2100, 1100)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(2)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "SplashScreenForm"
         Me.Text = "SplashScreen"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
