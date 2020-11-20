@@ -47,7 +47,7 @@ Partial Class StansGroceryForm
         '
         Me.DisplayListBox.FormattingEnabled = True
         Me.DisplayListBox.ItemHeight = 25
-        Me.DisplayListBox.Location = New System.Drawing.Point(676, 169)
+        Me.DisplayListBox.Location = New System.Drawing.Point(680, 169)
         Me.DisplayListBox.Margin = New System.Windows.Forms.Padding(4)
         Me.DisplayListBox.Name = "DisplayListBox"
         Me.DisplayListBox.Size = New System.Drawing.Size(648, 679)
@@ -76,7 +76,7 @@ Partial Class StansGroceryForm
         'SearchToolStripMenuItem
         '
         Me.SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
-        Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(220, 44)
+        Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(359, 44)
         Me.SearchToolStripMenuItem.Text = "Search"
         '
         'HelpToolStripMenuItem

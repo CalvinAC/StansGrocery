@@ -93,7 +93,7 @@ Public Class StansGroceryForm
                 DisplayComboBox.Sorted = True
             Next
             ComboLabel.Text = "Category"
-            DisplayComboBox.Items.Insert(0, " ~Show All~")
+            DisplayComboBox.Items.Insert(0, " ~Show All~") ' Select this after load
         Else
 
         End If
@@ -143,7 +143,7 @@ Public Class StansGroceryForm
         DisplayListBox.Items.Clear()
         If CategoryButton.Checked = True Then
             For i = LBound(Me.food$) To UBound(Me.food$) - 1
-                If DisplayComboBox.SelectedItem.ToString = food(i, 2) Then
+                If DisplayComboBox.SelectedItem.ToString = food(i, 2) Then ' Show All does not show all items -TJR
                     DisplayListBox.Items.Add(food(i, 0))
                 End If
             Next
